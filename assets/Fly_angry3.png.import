@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5nkhooekfgnu"
-path="res://.godot/imported/Fly_angry3.png-93a149626cbb834e2a89e62fd4c64f2f.ctex"
+path="res://.godot/imported/Fly_angry3.png-68ce8300d00f192e2e36c665f4fc5746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Fly_angry3.png"
-dest_files=["res://.godot/imported/Fly_angry3.png-93a149626cbb834e2a89e62fd4c64f2f.ctex"]
+source_file="res://game/assets/Fly_angry3.png"
+dest_files=["res://.godot/imported/Fly_angry3.png-68ce8300d00f192e2e36c665f4fc5746.ctex"]
 
 [params]
 
