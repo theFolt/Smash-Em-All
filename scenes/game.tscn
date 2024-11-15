@@ -38,3 +38,9 @@ shape = SubResource("WorldBoundaryShape2D_ou2cw")
 
 [node name="fly" parent="." instance=ExtResource("1_w47ox")]
 position = Vector2(17, -44)
+
+[node name="fly2" parent="." instance=ExtResource("1_w47ox")]
+position = Vector2(-121, -79)
+
+[node name="fly3" parent="." instance=ExtResource("1_w47ox")]
+position = Vector2(64, 51)

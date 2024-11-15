@@ -85,7 +85,7 @@ position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_d5kcm")
 animation = &"angry"
 autoplay = "normal"
-frame_progress = 0.678111
+frame_progress = 0.728994
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)

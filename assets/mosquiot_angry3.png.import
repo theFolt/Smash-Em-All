@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bing3dv2q75w1"
-path="res://.godot/imported/mosquiot_angry3.png-32f97fa0b7adda5b8179dae21caed6a3.ctex"
+path="res://.godot/imported/mosquiot_angry3.png-32120a472f82306fbac135c9e4cfa5f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/assets/mosquiot_angry3.png"
-dest_files=["res://.godot/imported/mosquiot_angry3.png-32f97fa0b7adda5b8179dae21caed6a3.ctex"]
+source_file="res://assets/mosquiot_angry3.png"
+dest_files=["res://.godot/imported/mosquiot_angry3.png-32120a472f82306fbac135c9e4cfa5f0.ctex"]
 
 [params]
 
