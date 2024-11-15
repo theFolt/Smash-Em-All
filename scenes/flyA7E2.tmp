@@ -1,39 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://dishkmrupptw4"]
+[gd_scene load_steps=14 format=3 uid="uid://w3p2bp8gvlmr"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_1mica"]
-[ext_resource type="Texture2D" uid="uid://yta7ktvhdyas" path="res://assets/poprawione/fly_angry4.png" id="2_v5rpd"]
-[ext_resource type="Texture2D" uid="uid://c5kvtba0xtfo" path="res://assets/poprawione/fly4.png" id="3_rgu4a"]
+[ext_resource type="Script" path="res://scripts/fly.gd" id="1_vjq4v"]
+[ext_resource type="Texture2D" uid="uid://yta7ktvhdyas" path="res://assets/poprawione/fly_angry4.png" id="2_hxjpe"]
+[ext_resource type="Texture2D" uid="uid://c5kvtba0xtfo" path="res://assets/poprawione/fly4.png" id="3_7nqnf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oky21"]
-atlas = ExtResource("2_v5rpd")
+atlas = ExtResource("2_hxjpe")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_glwa2"]
-atlas = ExtResource("2_v5rpd")
+atlas = ExtResource("2_hxjpe")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4jwwt"]
-atlas = ExtResource("2_v5rpd")
+atlas = ExtResource("2_hxjpe")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bvdm"]
-atlas = ExtResource("2_v5rpd")
+atlas = ExtResource("2_hxjpe")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ugko"]
-atlas = ExtResource("3_rgu4a")
+atlas = ExtResource("3_7nqnf")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5r34"]
-atlas = ExtResource("3_rgu4a")
+atlas = ExtResource("3_7nqnf")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85jx6"]
-atlas = ExtResource("3_rgu4a")
+atlas = ExtResource("3_7nqnf")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t68b6"]
-atlas = ExtResource("3_rgu4a")
+atlas = ExtResource("3_7nqnf")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d5kcm"]
@@ -74,20 +74,22 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxent"]
-radius = 8.48528
+radius = 10.0499
 
 [node name="fly" type="CharacterBody2D"]
-script = ExtResource("1_1mica")
+input_pickable = true
+script = ExtResource("1_vjq4v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -17)
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_d5kcm")
 animation = &"angry"
 autoplay = "normal"
-frame_progress = 0.616227
+frame_progress = 0.90205
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dxent")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]

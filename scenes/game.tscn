@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bftr07mx42cvu"]
 
-[ext_resource type="PackedScene" uid="uid://dishkmrupptw4" path="res://scenes/player.tscn" id="1_iqiyk"]
+[ext_resource type="PackedScene" uid="uid://w3p2bp8gvlmr" path="res://scenes/fly.tscn" id="1_w47ox"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bf0q2"]
 distance = -163.0
@@ -19,9 +19,6 @@ distance = -288.0
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_iqiyk")]
-position = Vector2(48, -7)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
@@ -38,3 +35,6 @@ shape = SubResource("WorldBoundaryShape2D_pgu0u")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_ou2cw")
+
+[node name="fly" parent="." instance=ExtResource("1_w47ox")]
+position = Vector2(17, -44)
