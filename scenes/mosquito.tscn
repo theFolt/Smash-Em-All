@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://cunpke3234vrf"]
+
+[ext_resource type="Script" path="res://scripts/mosquito.gd" id="1_o831o"]
+[ext_resource type="Texture2D" uid="uid://bing3dv2q75w1" path="res://assets/mosquiot_angry3.png" id="1_sa5ml"]
+[ext_resource type="Texture2D" uid="uid://jum5em2ubhsq" path="res://assets/mosquiot3.png" id="2_i4v78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjfh5"]
+atlas = ExtResource("1_sa5ml")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwe31"]
+atlas = ExtResource("1_sa5ml")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73kkh"]
+atlas = ExtResource("1_sa5ml")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh3ay"]
+atlas = ExtResource("1_sa5ml")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gk21"]
+atlas = ExtResource("2_i4v78")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0027"]
+atlas = ExtResource("2_i4v78")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpcty"]
+atlas = ExtResource("2_i4v78")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctnwn"]
+atlas = ExtResource("2_i4v78")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6gwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjfh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwe31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73kkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh3ay")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gk21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0027")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpcty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctnwn")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gn8kn"]
+radius = 9.0
+
+[node name="mosquito" type="CharacterBody2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_o831o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_a6gwx")
+animation = &"normal"
+autoplay = "normal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -10)
+shape = SubResource("CircleShape2D_gn8kn")

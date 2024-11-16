@@ -53,7 +53,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"angry",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxent"]
-radius = 10.0499
+radius = 7.0
 
 [node name="fly" type="CharacterBody2D"]
 input_pickable = true
@@ -85,7 +85,7 @@ position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_d5kcm")
 animation = &"angry"
 autoplay = "normal"
-frame_progress = 0.728994
+frame_progress = 0.106646
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)

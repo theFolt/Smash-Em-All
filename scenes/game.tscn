@@ -1,28 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bftr07mx42cvu"]
+[gd_scene load_steps=8 format=3 uid="uid://bftr07mx42cvu"]
 
 [ext_resource type="PackedScene" uid="uid://w3p2bp8gvlmr" path="res://scenes/fly.tscn" id="1_w47ox"]
+[ext_resource type="PackedScene" uid="uid://buswdgo8j6eox" path="res://scenes/bee.tscn" id="2_p4bsg"]
+[ext_resource type="PackedScene" uid="uid://cunpke3234vrf" path="res://scenes/mosquito.tscn" id="3_fgsug"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bf0q2"]
-distance = -163.0
+distance = -134.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4rvex"]
 normal = Vector2(1, 0)
-distance = -288.0
+distance = -239.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pgu0u"]
 normal = Vector2(0, 1)
-distance = -163.0
+distance = -147.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ou2cw"]
 normal = Vector2(-1, 0)
-distance = -288.0
+distance = -240.0
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+limit_left = -240
+limit_top = -135
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_bf0q2")
@@ -31,6 +36,7 @@ shape = SubResource("WorldBoundaryShape2D_bf0q2")
 shape = SubResource("WorldBoundaryShape2D_4rvex")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 12)
 shape = SubResource("WorldBoundaryShape2D_pgu0u")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
@@ -39,8 +45,14 @@ shape = SubResource("WorldBoundaryShape2D_ou2cw")
 [node name="fly" parent="." instance=ExtResource("1_w47ox")]
 position = Vector2(17, -44)
 
-[node name="fly2" parent="." instance=ExtResource("1_w47ox")]
-position = Vector2(-121, -79)
+[node name="bee" parent="." instance=ExtResource("2_p4bsg")]
+position = Vector2(-68, -39)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
 
-[node name="fly3" parent="." instance=ExtResource("1_w47ox")]
-position = Vector2(64, 51)
+[node name="mosquito" parent="." instance=ExtResource("3_fgsug")]
+position = Vector2(100, -35)
+collision_layer = 4
+collision_mask = 4
+input_pickable = true
