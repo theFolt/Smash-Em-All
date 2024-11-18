@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgjqtbb1bbxy5"]
+[gd_scene load_steps=4 format=3 uid="uid://dgjqtbb1bbxy5"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_3nyoe"]
+[ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_bq8hh"]
+[ext_resource type="PackedScene" uid="uid://b670lnaplmugy" path="res://scenes/pureSteve.tscn" id="3_0b0iv"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,19 +13,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3nyoe")
 
+[node name="room1" parent="." instance=ExtResource("2_bq8hh")]
+position = Vector2(240, 135)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -50.5
-offset_right = 35.0
-offset_bottom = 50.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+offset_right = 70.0
+grow_vertical = 0
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -42,6 +42,9 @@ text = "Credits
 layout_mode = 2
 text = "Quit
 "
+
+[node name="steve" parent="." instance=ExtResource("3_0b0iv")]
+position = Vector2(240, 270)
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

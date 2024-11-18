@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0vhy06etcha8"]
+
+[ext_resource type="Script" path="res://scripts/steve.gd" id="1_8q077"]
+[ext_resource type="Texture2D" uid="uid://cpbwno36egtfq" path="res://assets/steve.png" id="1_etb33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vblld"]
+atlas = ExtResource("1_etb33")
+region = Rect2(0, 0, 240, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eul2c"]
+atlas = ExtResource("1_etb33")
+region = Rect2(240, 0, 240, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwg8m"]
+atlas = ExtResource("1_etb33")
+region = Rect2(480, 0, 240, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0jev"]
+atlas = ExtResource("1_etb33")
+region = Rect2(720, 0, 240, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3uev"]
+atlas = ExtResource("1_etb33")
+region = Rect2(240, 0, 240, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6rmn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vblld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eul2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwg8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0jev")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3uev")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dn3h"]
+bg_color = Color(0, 0.909804, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="steve" type="CharacterBody2D"]
+scale = Vector2(1.7, 1.7)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_8q077")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, -67.5)
+sprite_frames = SubResource("SpriteFrames_6rmn7")
+animation = &"blink"
+autoplay = "idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-52, 0, -52, -3, -47, -8, -40, -13, -36, -25, -28, -27, -14, -27, -14, -33, -27, -50, -29, -50, -34, -60, -34, -65, -37, -65, -40, -72, -40, -91, -35, -95, -35, -102, -33, -105, -32, -108, -25, -109, -24, -112, -19, -114, -17, -117, -7, -117, -6, -115, 1, -116, 7, -116, 9, -115, 13, -117, 15, -115, 20, -115, 22, -111, 29, -111, 29, -107, 35, -107, 35, -100, 40, -96, 40, -92, 43, -90, 43, -79, 42, -71, 37, -64, 33, -62, 33, -57, 31, -51, 27, -49, 23, -43, 16, -35, 16, -28, 32, -28, 42, -25, 47, -21, 47, -17, 45, -16, 45, -14, 48, -13, 54, -10, 59, -4, 59, 0)
+
+[node name="Area2D" type="Area2D" parent="." groups=["steve"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-52, 0, -52, -3, -47, -8, -40, -13, -36, -25, -28, -27, -14, -27, -14, -33, -27, -50, -29, -50, -34, -60, -34, -65, -37, -65, -40, -72, -40, -91, -35, -95, -35, -102, -33, -105, -32, -108, -25, -109, -24, -112, -19, -114, -17, -117, -7, -117, -6, -115, 1, -116, 7, -116, 9, -115, 13, -117, 15, -115, 20, -115, 22, -111, 29, -111, 29, -107, 35, -107, 35, -100, 40, -96, 40, -92, 43, -90, 43, -79, 42, -71, 37, -64, 33, -62, 33, -57, 31, -51, 27, -49, 23, -43, 16, -35, 16, -28, 32, -28, 42, -25, 47, -21, 47, -17, 45, -16, 45, -14, 48, -13, 54, -10, 59, -4, 59, 0)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -30.5882
+offset_top = -128.235
+offset_right = 30.4118
+offset_bottom = -123.235
+theme_override_styles/fill = SubResource("StyleBoxFlat_5dn3h")
+step = 1.0
+value = 70.0
+rounded = true
+show_percentage = false
+
+[node name="blinkTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 4.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="blinkTimer" to="." method="_on_blink_timer_timeout"]

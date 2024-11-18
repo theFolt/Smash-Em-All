@@ -78,6 +78,7 @@ radius = 7.0
 
 [node name="fly" type="CharacterBody2D"]
 input_pickable = true
+safe_margin = 1.0
 script = ExtResource("1_vjq4v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -91,5 +92,12 @@ frame_progress = 0.106646
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dxent")
 
+[node name="Area2D" type="Area2D" parent="." groups=["fly"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_dxent")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

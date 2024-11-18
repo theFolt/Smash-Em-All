@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy7c4cgx68muo"]
+
+[ext_resource type="Texture2D" uid="uid://mq6ooh5hyd1e" path="res://assets/room.png" id="1_j6tf4"]
+
+[node name="room1" type="Sprite2D"]
+position = Vector2(0, -135)
+scale = Vector2(2, 2)
+texture = ExtResource("1_j6tf4")

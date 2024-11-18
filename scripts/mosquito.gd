@@ -42,8 +42,17 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_R:
 			animated_sprite.play("normal")
 			speed = 70
+
+func drawNewPositionOnCollison() -> void:
+	var area=rng.randi_range(1,4)
+	if area==1:
+		goTo = Vector2(-230.0,snapped(rng.randf_range(-115.0, 115.0),0))
+	elif area==2:
+		goTo = Vector2(snapped(rng.randf_range(-230.0, 230.0),0),-115.0)
+	else:
+		goTo = Vector2(230.0,snapped(rng.randf_range(-115.0, 115.0),0))
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("steve"):
+		drawNewPositionOnCollison()
 		
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_ESCAPE:
-			get_tree().change_scene_to_file("res://scenes/menu.tscn")
-			
