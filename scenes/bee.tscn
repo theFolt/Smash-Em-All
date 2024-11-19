@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://buswdgo8j6eox"]
+[gd_scene load_steps=15 format=3 uid="uid://buswdgo8j6eox"]
 
 [ext_resource type="Script" path="res://scripts/bee.gd" id="1_kx6vv"]
 [ext_resource type="Texture2D" uid="uid://4geqsvc4qfh2" path="res://assets/bee_angry.png" id="2_ktxk7"]
@@ -76,9 +76,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kf2ko"]
 radius = 8.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ecmwy"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="bee" type="CharacterBody2D"]
+scale = Vector2(1.3, 1.3)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
+input_pickable = true
 safe_margin = 1.0
 script = ExtResource("1_kx6vv")
 
@@ -101,3 +110,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_kf2ko")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -6.92308
+offset_top = -19.2308
+offset_right = 23.0769
+offset_bottom = -15.2308
+scale = Vector2(0.5, 0.5)
+theme_override_styles/fill = SubResource("StyleBoxFlat_ecmwy")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false

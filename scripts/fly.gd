@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 
-@export var speed: float = 70
+var speed: float = 70
 @onready var animated_sprite=$AnimatedSprite2D
- 
+var health = 5
+var damage = 2
 
 #create first cords to go to
 #snapped rounds the random number to intigers
@@ -27,22 +28,32 @@ func _process(delta: float) -> void:
 	
 	
 	#flip the sprite while moveing
-	if goTo.x > global_position.x:
-		animated_sprite.flip_h = true
-	elif goTo.x < global_position.x:
-		animated_sprite.flip_h = false
+	if is_instance_valid(animated_sprite):
+		if goTo.x > global_position.x:
+			animated_sprite.flip_h = true
+		elif goTo.x < global_position.x:
+			animated_sprite.flip_h = false
 
 
 func _input_event(viewport, event, shape_idx):
 	#action when clicked on Collision Shape
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		animated_sprite.play("angry")
-		speed = 140
+		
+		health -= 1
+		$HealthBar.value = health
+		if health == 3:
+			animated_sprite.play("angry")
+			damage = 4
+			speed = 140
+	
+		if health == 0:
+			queue_free()
 
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_R:
 			animated_sprite.play("normal")
+			damage = 2
 			speed = 70
 
 func drawNewPositionOnCollison() -> void:
@@ -57,5 +68,3 @@ func drawNewPositionOnCollison() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("steve"):
 		drawNewPositionOnCollison()
-
-		

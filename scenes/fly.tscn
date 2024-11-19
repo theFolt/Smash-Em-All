@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://w3p2bp8gvlmr"]
+[gd_scene load_steps=15 format=3 uid="uid://w3p2bp8gvlmr"]
 
 [ext_resource type="Script" path="res://scripts/fly.gd" id="1_vjq4v"]
 [ext_resource type="Texture2D" uid="uid://yta7ktvhdyas" path="res://assets/poprawione/fly_angry4.png" id="2_hxjpe"]
@@ -76,7 +76,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxent"]
 radius = 7.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j3gb"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="fly" type="CharacterBody2D"]
+scale = Vector2(1.3, 1.3)
+collision_mask = 0
 input_pickable = true
 safe_margin = 1.0
 script = ExtResource("1_vjq4v")
@@ -87,6 +96,7 @@ sprite_frames = SubResource("SpriteFrames_d5kcm")
 animation = &"angry"
 autoplay = "normal"
 frame_progress = 0.106646
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
@@ -98,6 +108,16 @@ shape = SubResource("CircleShape2D_dxent")
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dxent")
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -6.92308
+offset_top = -17.6923
+offset_right = 23.0769
+offset_bottom = -13.6923
+scale = Vector2(0.5, 0.5)
+theme_override_styles/fill = SubResource("StyleBoxFlat_7j3gb")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
