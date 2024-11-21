@@ -5,8 +5,10 @@ var bee=load("res://scenes/bee.tscn")
 var mosquito=load("res://scenes/mosquito.tscn")
 var endScreen=load("res://scenes/endScreen.tscn")
 
+
 var rng = RandomNumberGenerator.new()
 var do_it_once= 1
+var score:int = 0
 
 func _ready() -> void:
 	$firstSpawn.start()
@@ -22,9 +24,7 @@ func _process(delta: float) -> void:
 			$bee.queue_free()
 		if $mosquito.is_inside_tree():
 			$mosquito.queue_free()
-		var endScreen = endScreen.instantiate()
-		endScreen.position = Vector2(-240.0,-135.0)
-		add_child(endScreen)
+		disp_score($steve/HealthBar.value)
 		do_it_once = 0
 
 func _unhandled_input(event):
@@ -65,3 +65,14 @@ func _on_next_wave_timeout() -> void:
 	var mosquito = mosquito.instantiate()
 	mosquito.position = drawSpawnPosition()
 	add_child(mosquito)
+	
+func score_couter(bug, points:int) -> void:
+	score+=points
+	
+func disp_score(health) -> void:
+	if health >= 0:
+		score+=1000
+		score+=health	
+	var endScreen = endScreen.instantiate()
+	endScreen.position = Vector2(-240.0,-135.0)
+	add_child(endScreen)
