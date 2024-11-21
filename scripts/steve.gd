@@ -1,16 +1,22 @@
 extends CharacterBody2D
 
-var MAX_HEALTH = 100
+var MAX_HEALTH = 5
 var health = MAX_HEALTH
+var is_alive = 1
 
 func _ready() -> void:
-	$HealthBar.max_value=MAX_HEALTH
-	$blinkTimer.start()
+	if is_instance_valid($HealthBar):
+		$HealthBar.max_value=MAX_HEALTH
+	if is_instance_valid($blinkTimer):
+		$blinkTimer.start()
 
 func damage(a) -> void:
 	health -= a
-	if health < 0:
+	if health <= 0:
 		print("Steve died")
+		is_alive = 0
+		print(is_alive)
+		#get_tree().paused = true
 	$HealthBar.value = health
 	 
 func _on_area_2d_area_entered(area: Area2D) -> void:

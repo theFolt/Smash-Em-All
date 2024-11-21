@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Fly="*res://scripts/fly.gd"
 Bee="*res://scripts/bee.gd"
 Mosquito="*res://scripts/mosquito.gd"
+Steve="*res://scripts/steve.gd"
 
 [display]
 

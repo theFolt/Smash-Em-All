@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4bjl3qnmkokt"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ikjph"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cjjq3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.259294, 0.259294, 0.259294, 0.458824)
+self_modulate = Color(0.254902, 0.254902, 0.254902, 0.545098)
+material = SubResource("CanvasItemMaterial_ikjph")
+position = Vector2(240, 135)
+scale = Vector2(1.52148, 177.25)
+texture = SubResource("CurveXYZTexture_cjjq3")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 176.0
+offset_top = 107.0
+offset_right = 341.0
+offset_bottom = 149.0
+text = "123"

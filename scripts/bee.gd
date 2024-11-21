@@ -34,6 +34,10 @@ func _process(delta: float) -> void:
 			animated_sprite.flip_h = true
 		elif goTo.x < global_position.x:
 			animated_sprite.flip_h = false
+			
+	if Steve.is_alive == 0:
+		print('we killed him')
+		queue_free()
 
 
 func _input_event(viewport, event, shape_idx):

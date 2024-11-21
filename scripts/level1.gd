@@ -3,8 +3,10 @@ extends Node2D
 var fly=load("res://scenes/fly.tscn")
 var bee=load("res://scenes/bee.tscn")
 var mosquito=load("res://scenes/mosquito.tscn")
+var endScreen=load("res://scenes/endScreen.tscn")
 
 var rng = RandomNumberGenerator.new()
+var do_it_once= 1
 
 func _ready() -> void:
 	$firstSpawn.start()
@@ -12,8 +14,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
+	if $steve/HealthBar.value <= 0 and do_it_once == 1:
+		$nextWave.stop()
+		if $fly.is_inside_tree():
+			$fly.queue_free()
+		if $bee.is_inside_tree():
+			$bee.queue_free()
+		if $mosquito.is_inside_tree():
+			$mosquito.queue_free()
+		var endScreen = endScreen.instantiate()
+		endScreen.position = Vector2(-240.0,-135.0)
+		add_child(endScreen)
+		do_it_once = 0
 
 func _unhandled_input(event):
 	if event is InputEventKey:

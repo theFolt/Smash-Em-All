@@ -14,7 +14,7 @@ var goTo = Vector2(snapped(rng.randf_range(-224.0, 224.0),0),snapped(rng.randf_r
 
 
 	
-func _process(delta: float) -> void:
+func _process(float) -> void:
 	
 	#random movement
 	#there is so room for error so the movement is less buggy when reaching the destination
@@ -34,8 +34,7 @@ func _process(delta: float) -> void:
 			animated_sprite.flip_h = true
 		elif goTo.x < global_position.x:
 			animated_sprite.flip_h = false
-
-
+		
 func _input_event(viewport, event, shape_idx):
 	#action when clicked on Collision Shape
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and is_in_lapka_area==1:
