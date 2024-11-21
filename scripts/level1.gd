@@ -6,8 +6,9 @@ var mosquito=load("res://scenes/mosquito.tscn")
 
 
 var rng = RandomNumberGenerator.new()
-var do_it_once= 1
+var do_it_once:int = 1
 var score:int = 0
+var wave_couter:int = 0
 
 func _ready() -> void:
 	if is_instance_valid($firstSpawn):
@@ -18,7 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if is_instance_valid($steve/HealthBar):
+	if is_instance_valid($steve):
 		if $steve/HealthBar.value <= 0 and do_it_once == 1:
 			$nextWave.stop()
 			if $fly.is_inside_tree():
@@ -61,8 +62,7 @@ func _on_first_spawn_timeout() -> void:
 	$firstSpawn.stop()
 	$nextWave.start()
 
-
-func _on_next_wave_timeout() -> void:
+func basic_wave() ->  void:
 	var fly = fly.instantiate()
 	fly.position = drawSpawnPosition()
 	add_child(fly)
@@ -72,6 +72,44 @@ func _on_next_wave_timeout() -> void:
 	var mosquito = mosquito.instantiate()
 	mosquito.position = drawSpawnPosition()
 	add_child(mosquito)
+	
+func fly_wave() -> void:
+	for x in range(0,2):
+		var fly = fly.instantiate()
+		fly.position = drawSpawnPosition()
+		add_child(fly)
+
+func bee_wave() -> void:
+	for x in range(0,2):
+		var bee = bee.instantiate()
+		bee.position = drawSpawnPosition()
+		add_child(bee)
+		
+func mosquito_wave() -> void:
+	for x in range(0,2):
+		var mosquito = mosquito.instantiate()
+		mosquito.position = drawSpawnPosition()
+		add_child(mosquito)
+
+func final_wave() -> void:
+	for x in range(0,2):
+		var fly = fly.instantiate()
+		fly.position = drawSpawnPosition()
+		add_child(fly)
+		var bee = bee.instantiate()
+		bee.position = drawSpawnPosition()
+		add_child(bee)
+		var mosquito = mosquito.instantiate()
+		mosquito.position = drawSpawnPosition()
+		add_child(mosquito)
+
+func _on_next_wave_timeout() -> void:
+	wave_couter+=1
+	basic_wave()
+	fly_wave()
+	bee_wave()
+	mosquito_wave()
+	final_wave()
 	
 func score_couter(bug, points:int) -> void:
 	score+=points

@@ -48,13 +48,13 @@ func _input_event(viewport, event, shape_idx):
 		if health == 0:
 			Level1.score_couter('',100)
 			queue_free()
-
-func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_R:
-			animated_sprite.play("normal")
-			damage = 2
-			speed = 70
+#
+#func _unhandled_input(event):
+	#if event is InputEventKey:
+		#if event.pressed and event.keycode == KEY_R:
+			#animated_sprite.play("normal")
+			#damage = 2
+			#speed = 70
 
 func drawNewPositionOnCollison() -> void:
 	var area=rng.randi_range(1,4)
