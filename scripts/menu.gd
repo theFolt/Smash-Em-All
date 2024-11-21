@@ -6,3 +6,6 @@ func _on_start_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _input(event):
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

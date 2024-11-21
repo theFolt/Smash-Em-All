@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bftr07mx42cvu"]
+[gd_scene load_steps=9 format=3 uid="uid://bftr07mx42cvu"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_o3enl"]
 [ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_pk2jh"]
 [ext_resource type="PackedScene" uid="uid://d0vhy06etcha8" path="res://scenes/steve.tscn" id="3_ccwkf"]
+[ext_resource type="PackedScene" uid="uid://3ttvoturblox" path="res://scenes/lapka.tscn" id="4_viowi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bf0q2"]
 distance = -135.0
@@ -59,6 +60,9 @@ process_callback = 0
 [node name="nextWave" type="Timer" parent="."]
 process_callback = 0
 wait_time = 10.0
+
+[node name="Node2D" parent="." instance=ExtResource("4_viowi")]
+position = Vector2(-132, -25)
 
 [connection signal="timeout" from="firstSpawn" to="." method="_on_first_spawn_timeout"]
 [connection signal="timeout" from="nextWave" to="." method="_on_next_wave_timeout"]

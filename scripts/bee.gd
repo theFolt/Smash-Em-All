@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var speed: float = 70
 @onready var animated_sprite=$AnimatedSprite2D
-var health = 5
+var health = 3
 var damage = 2
 
 #create first cords to go to
@@ -38,10 +38,9 @@ func _process(delta: float) -> void:
 func _input_event(viewport, event, shape_idx):
 	#action when clicked on Collision Shape
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		
 		health -= 1
 		$HealthBar.value = health
-		if health == 3:
+		if health == 1:
 			animated_sprite.play("angry")
 			damage = 4
 			speed = 140
