@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bftr07mx42cvu"]
+[gd_scene load_steps=11 format=3 uid="uid://bftr07mx42cvu"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_o3enl"]
 [ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_pk2jh"]
 [ext_resource type="PackedScene" uid="uid://d0vhy06etcha8" path="res://scenes/steve.tscn" id="3_ccwkf"]
 [ext_resource type="PackedScene" uid="uid://3ttvoturblox" path="res://scenes/lapka.tscn" id="4_viowi"]
+[ext_resource type="Theme" uid="uid://2eqr60lxk1bv" path="res://default4.tres" id="5_b1o1f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bf0q2"]
 distance = -135.0
@@ -19,6 +20,8 @@ distance = -147.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ou2cw"]
 normal = Vector2(-1, 0)
 distance = -240.0
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_n6wo2"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_o3enl")
@@ -65,6 +68,64 @@ process_callback = 0
 [node name="nextWave" type="Timer" parent="."]
 process_callback = 0
 wait_time = 10.0
+
+[node name="endScreen" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="endScreen"]
+modulate = Color(0.254902, 0.254902, 0.254902, 0.584314)
+self_modulate = Color(0.25098, 0.25098, 0.25098, 0.843137)
+scale = Vector2(1.50391, 194)
+texture = SubResource("CurveXYZTexture_n6wo2")
+
+[node name="scoreDisp" type="Label" parent="endScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label" type="Label" parent="endScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -42.5
+offset_right = 20.0
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="endScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 55.0
+offset_right = 75.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quit" type="Button" parent="endScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_b1o1f")
+text = " 
+"
 
 [connection signal="timeout" from="firstSpawn" to="." method="_on_first_spawn_timeout"]
 [connection signal="timeout" from="nextWave" to="." method="_on_next_wave_timeout"]

@@ -46,7 +46,7 @@ func _input_event(viewport, event, shape_idx):
 			speed = 140
 
 		if health == 0:
-			#Level1.score_couter('',100)
+			Level1.score_couter('',100)
 			queue_free()
 
 func _unhandled_input(event):
