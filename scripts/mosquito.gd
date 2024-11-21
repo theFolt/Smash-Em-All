@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var speed: float = 70
 @onready var animated_sprite=$AnimatedSprite2D
-var health = 3
+var health = 4
 var damage = 2
 var is_in_lapka_area=0
 
@@ -40,10 +40,10 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and is_in_lapka_area==1:
 		health -= 1
 		$HealthBar.value = health
-		if health == 1:
+		if health == 2:
 			animated_sprite.play("angry")
 			damage = 4
-			speed = 140
+			speed = 80
 
 		if health == 0:
 			ScoreManager.score+=100

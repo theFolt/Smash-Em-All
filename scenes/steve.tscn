@@ -88,8 +88,9 @@ offset_top = -128.235
 offset_right = 30.4118
 offset_bottom = -123.235
 theme_override_styles/fill = SubResource("StyleBoxFlat_5dn3h")
+max_value = 150.0
 step = 1.0
-value = 100.0
+value = 150.0
 rounded = true
 show_percentage = false
 
