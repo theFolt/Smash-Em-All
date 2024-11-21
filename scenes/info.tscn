@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3iu1vngs10i2"]
+
+[ext_resource type="Script" path="res://scripts/info.gd" id="1_d74vk"]
+[ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_15k2i"]
+[ext_resource type="Theme" uid="uid://2eqr60lxk1bv" path="res://default4.tres" id="2_djknw"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d74vk")
+
+[node name="room1" parent="." instance=ExtResource("2_15k2i")]
+position = Vector2(240, 135)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -43.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_djknw")
+text = " 
+"
+
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

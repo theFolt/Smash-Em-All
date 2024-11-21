@@ -5,6 +5,7 @@ var speed: float = 70
 @onready var animated_sprite=$AnimatedSprite2D
 var health = 3
 var damage = 2
+var is_in_lapka_area=0
 
 #create first cords to go to
 #snapped rounds the random number to intigers
@@ -37,14 +38,14 @@ func _process(delta: float) -> void:
 
 func _input_event(viewport, event, shape_idx):
 	#action when clicked on Collision Shape
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and is_in_lapka_area==1:
 		health -= 1
 		$HealthBar.value = health
 		if health == 1:
 			animated_sprite.play("angry")
 			damage = 4
 			speed = 140
-	
+
 		if health == 0:
 			queue_free()
 
@@ -67,3 +68,10 @@ func drawNewPositionOnCollison() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("steve"):
 		drawNewPositionOnCollison()
+	if area.is_in_group('lapka'):
+		is_in_lapka_area=1
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+		if area.is_in_group('lapka'):
+			is_in_lapka_area=0

@@ -118,7 +118,10 @@ offset_right = 23.0769
 offset_bottom = -15.2308
 scale = Vector2(0.5, 0.5)
 theme_override_styles/fill = SubResource("StyleBoxFlat_ecmwy")
-max_value = 5.0
+max_value = 3.0
 step = 1.0
-value = 5.0
+value = 3.0
 show_percentage = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

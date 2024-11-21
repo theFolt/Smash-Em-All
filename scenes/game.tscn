@@ -32,6 +32,11 @@ collision_layer = 8
 collision_mask = 8
 safe_margin = 1.0
 
+[node name="lapka" parent="." instance=ExtResource("4_viowi")]
+process_physics_priority = 1
+light_mask = 0
+position = Vector2(222, 179)
+
 [node name="borders" type="StaticBody2D" parent="."]
 collision_layer = 7
 collision_mask = 7
@@ -60,9 +65,6 @@ process_callback = 0
 [node name="nextWave" type="Timer" parent="."]
 process_callback = 0
 wait_time = 10.0
-
-[node name="Node2D" parent="." instance=ExtResource("4_viowi")]
-position = Vector2(-132, -25)
 
 [connection signal="timeout" from="firstSpawn" to="." method="_on_first_spawn_timeout"]
 [connection signal="timeout" from="nextWave" to="." method="_on_next_wave_timeout"]
