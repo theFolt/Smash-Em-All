@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgw0wwhvlaldc"]
+[gd_scene load_steps=5 format=3 uid="uid://dgw0wwhvlaldc"]
 
 [ext_resource type="Script" path="res://scripts/credits.gd" id="1_uxgpt"]
 [ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_gr3vc"]
 [ext_resource type="Theme" uid="uid://2eqr60lxk1bv" path="res://default4.tres" id="3_p3cl2"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ja4u6"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -34,5 +36,29 @@ layout_mode = 2
 theme = ExtResource("3_p3cl2")
 text = " 
 "
+
+[node name="endScreen" type="Area2D" parent="."]
+top_level = true
+position = Vector2(240, 125)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="endScreen"]
+modulate = Color(0.254902, 0.254902, 0.254902, 0.584314)
+self_modulate = Color(0.25098, 0.25098, 0.25098, 0.843137)
+scale = Vector2(3.5625, 296)
+texture = SubResource("CurveXYZTexture_ja4u6")
+
+[node name="Label" type="Label" parent="endScreen"]
+offset_left = -442.0
+offset_top = -80.0
+offset_right = 446.0
+offset_bottom = 621.0
+theme_override_font_sizes/font_size = 25
+text = "Oskar Grząślewicz - main programmer
+Julia Wnukiewicz - main designer, support programmer 
+Dominika Wnukiewicz - support designer
+Bartosz Drożdżyński - game tester"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

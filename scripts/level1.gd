@@ -7,8 +7,9 @@ var mosquito=load("res://scenes/mosquito.tscn")
 
 var rng = RandomNumberGenerator.new()
 var do_it_once:int = 1
-var score:int = 0
+@onready var score:int = 0
 var wave_couter:int = 0
+var enemies_cout:int = 0
 
 func _ready() -> void:
 	if is_instance_valid($firstSpawn):
@@ -22,19 +23,28 @@ func _process(delta: float) -> void:
 	if is_instance_valid($steve):
 		if $steve/HealthBar.value <= 0 and do_it_once == 1:
 			$nextWave.stop()
-			if $fly.is_inside_tree():
-				$fly.queue_free()
-			if $bee.is_inside_tree():
-				$bee.queue_free()
-			if $mosquito.is_inside_tree():
-				$mosquito.queue_free()
-			if $steve/HealthBar.value >= 0:
-				score+=1000
-				score+=$steve/HealthBar.value
+			#if $fly.is_inside_tree():
+				#$fly.queue_free()
+			#if $bee.is_inside_tree():
+				#$bee.queue_free()
+			#if $mosquito.is_inside_tree():
+				#$mosquito.queue_free()
 			$endScreen.visible = true
-			$endScreen/scoreDisp.text = str(score)
+			print(ScoreManager.score)
+			$endScreen/scoreDisp.text = str(ScoreManager.score)
 			do_it_once = 0
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			$lapka.visible = false
+		if wave_couter > 8 and enemies_cout == -39:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#if wave_couter > 8 and $bee.is_inside_tree() == false and $mosquito.is_inside_tree() == false and $fly.is_inside_tree() == false:
+			ScoreManager.score+=1000
+			$lapka.visible = false
+			ScoreManager.score+=$steve/HealthBar.value
+			$endScreen.visible = true
+			$endScreen/scoreDisp.text = str(ScoreManager.score)
 
+	
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
@@ -74,25 +84,25 @@ func basic_wave() ->  void:
 	add_child(mosquito)
 	
 func fly_wave() -> void:
-	for x in range(0,2):
+	for x in range(0,3):
 		var fly = fly.instantiate()
 		fly.position = drawSpawnPosition()
 		add_child(fly)
 
 func bee_wave() -> void:
-	for x in range(0,2):
+	for x in range(0,3):
 		var bee = bee.instantiate()
 		bee.position = drawSpawnPosition()
 		add_child(bee)
 		
 func mosquito_wave() -> void:
-	for x in range(0,2):
+	for x in range(0,3):
 		var mosquito = mosquito.instantiate()
 		mosquito.position = drawSpawnPosition()
 		add_child(mosquito)
 
 func final_wave() -> void:
-	for x in range(0,2):
+	for x in range(0,3):
 		var fly = fly.instantiate()
 		fly.position = drawSpawnPosition()
 		add_child(fly)
@@ -102,14 +112,42 @@ func final_wave() -> void:
 		var mosquito = mosquito.instantiate()
 		mosquito.position = drawSpawnPosition()
 		add_child(mosquito)
+		
+	
+	
+func drawNextWave() -> void:
+	var wave=rng.randi_range(1,3)
+	if wave == 1:
+		fly_wave()
+	elif wave == 2:
+		bee_wave()
+	else:
+		mosquito_wave()
 
 func _on_next_wave_timeout() -> void:
+	if wave_couter == 0:
+		basic_wave()
+	elif wave_couter == 1:
+		fly_wave()
+	elif wave_couter == 2:
+		bee_wave()
+	elif wave_couter == 3:
+		mosquito_wave()
+	elif wave_couter == 4:
+		drawNextWave()
+	elif wave_couter == 5:
+		drawNextWave()
+	elif wave_couter == 6:
+		drawNextWave()
+		drawNextWave()
+	elif wave_couter == 7:
+		drawNextWave()
+		drawNextWave()
+	else:
+		final_wave()
+		
 	wave_couter+=1
-	basic_wave()
-	fly_wave()
-	bee_wave()
-	mosquito_wave()
-	final_wave()
 	
-func score_couter(bug, points:int) -> void:
-	score+=points
+#func score_couter(bug, points:int) -> void:
+	#score+=points
+	#print(score)

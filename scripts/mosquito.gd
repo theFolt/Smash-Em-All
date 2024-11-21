@@ -46,7 +46,9 @@ func _input_event(viewport, event, shape_idx):
 			speed = 140
 
 		if health == 0:
-			Level1.score_couter('',100)
+			ScoreManager.score+=100
+			Level1.enemies_cout -= 1
+			print(Level1.enemies_cout)
 			queue_free()
 #
 #func _unhandled_input(event):

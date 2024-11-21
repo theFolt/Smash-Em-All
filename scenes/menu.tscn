@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgjqtbb1bbxy5"]
+[gd_scene load_steps=8 format=3 uid="uid://dgjqtbb1bbxy5"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_3nyoe"]
 [ext_resource type="PackedScene" uid="uid://dy7c4cgx68muo" path="res://scenes/room.tscn" id="2_bq8hh"]
 [ext_resource type="Theme" uid="uid://euqghyx7e1j" path="res://default1.tres" id="3_fappn"]
 [ext_resource type="Theme" uid="uid://b2hngctau3huv" path="res://default3.tres" id="5_b5drv"]
 [ext_resource type="Theme" uid="uid://2eqr60lxk1bv" path="res://default4.tres" id="6_l232b"]
+[ext_resource type="Theme" uid="uid://fwtsd03irp8h" path="res://default6.tres" id="7_ea4ck"]
 [ext_resource type="Texture2D" uid="uid://b86k5wwqhiff2" path="res://assets/logo.png" id="7_wtqdi"]
 
 [node name="Menu" type="Control"]
@@ -60,13 +61,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -53.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 39.0
 grow_horizontal = 0
 
 [node name="info" type="Button" parent="BoxContainer"]
 layout_mode = 2
-text = "???"
+theme = ExtResource("7_ea4ck")
+text = "          "
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

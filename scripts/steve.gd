@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var MAX_HEALTH = 100
+var MAX_HEALTH = 2
 var health = MAX_HEALTH
 var is_alive = 1
 
@@ -13,9 +13,7 @@ func _ready() -> void:
 func damage(a) -> void:
 	health -= a
 	if health <= 0:
-		print("Steve died")
 		is_alive = 0
-		print(is_alive)
 		#get_tree().paused = true
 	$HealthBar.value = health
 	 

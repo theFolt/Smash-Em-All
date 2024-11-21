@@ -34,11 +34,6 @@ collision_layer = 8
 collision_mask = 8
 safe_margin = 1.0
 
-[node name="lapka" parent="." instance=ExtResource("4_viowi")]
-process_physics_priority = 1
-light_mask = 0
-position = Vector2(222, 179)
-
 [node name="borders" type="StaticBody2D" parent="."]
 collision_layer = 7
 collision_mask = 7
@@ -69,6 +64,7 @@ process_callback = 0
 wait_time = 10.0
 
 [node name="endScreen" type="Area2D" parent="."]
+top_level = true
 
 [node name="Sprite2D" type="Sprite2D" parent="endScreen"]
 modulate = Color(0.254902, 0.254902, 0.254902, 0.584314)
@@ -123,6 +119,11 @@ grow_vertical = 2
 text = "Press ESC to quit"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="lapka" parent="." instance=ExtResource("4_viowi")]
+process_physics_priority = 1
+light_mask = 0
+position = Vector2(222, 179)
 
 [connection signal="timeout" from="firstSpawn" to="." method="_on_first_spawn_timeout"]
 [connection signal="timeout" from="nextWave" to="." method="_on_next_wave_timeout"]

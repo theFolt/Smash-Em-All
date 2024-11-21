@@ -22,6 +22,7 @@ Bee="*res://scripts/bee.gd"
 Mosquito="*res://scripts/mosquito.gd"
 Steve="*res://scripts/steve.gd"
 Level1="*res://scripts/level1.gd"
+ScoreManager="*res://assets/scoreManager.gd"
 
 [display]
 
