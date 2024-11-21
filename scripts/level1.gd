@@ -3,7 +3,7 @@ extends Node2D
 var fly=load("res://scenes/fly.tscn")
 var bee=load("res://scenes/bee.tscn")
 var mosquito=load("res://scenes/mosquito.tscn")
-var endScreen=load("res://scenes/endScreen.tscn")
+
 
 
 var rng = RandomNumberGenerator.new()
@@ -11,21 +11,24 @@ var do_it_once= 1
 var score:int = 0
 
 func _ready() -> void:
-	$firstSpawn.start()
+	if is_instance_valid($firstSpawn):
+		$firstSpawn.start()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if $steve/HealthBar.value <= 0 and do_it_once == 1:
-		$nextWave.stop()
-		if $fly.is_inside_tree():
-			$fly.queue_free()
-		if $bee.is_inside_tree():
-			$bee.queue_free()
-		if $mosquito.is_inside_tree():
-			$mosquito.queue_free()
-		disp_score($steve/HealthBar.value)
-		do_it_once = 0
+	if is_instance_valid($steve/HealthBar):
+		if $steve/HealthBar.value <= 0 and do_it_once == 1:
+			get_tree().change_scene_to_file("res://scenes/endScreen.tscn")
+			#$nextWave.stop()
+			#if $fly.is_inside_tree():
+				#$fly.queue_free()
+			#if $bee.is_inside_tree():
+				#$bee.queue_free()
+			#if $mosquito.is_inside_tree():
+				#$mosquito.queue_free()
+			#disp_score($steve/HealthBar.value)
+			do_it_once = 0
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -66,13 +69,17 @@ func _on_next_wave_timeout() -> void:
 	mosquito.position = drawSpawnPosition()
 	add_child(mosquito)
 	
-func score_couter(bug, points:int) -> void:
-	score+=points
+#func score_couter(bug, points:int) -> void:
+	#score+=points
 	
-func disp_score(health) -> void:
-	if health >= 0:
-		score+=1000
-		score+=health	
-	var endScreen = endScreen.instantiate()
-	endScreen.position = Vector2(-240.0,-135.0)
-	add_child(endScreen)
+#func disp_score(x) -> void:
+	##if x == 0:
+		##score+=1000
+		##score+=x
+	##var endScreen=load("res://scenes/endScreen.tscn").instantiate()
+	##endScreen.position = Vector2(0.0,0.0)
+	##add_child(endScreen)
+	#print(x, score)
+#
+#func return_score() -> int:
+	#return(score)
